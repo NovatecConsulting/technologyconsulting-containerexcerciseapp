@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: ------
 metadata:
-  name: postgresdb 
+  name: postgresdb
   namespace: ------
 spec:
   template:
@@ -30,7 +30,7 @@ spec:
            valueFrom:
              configMapKeyRef:
                name: postgres-config
-               key: postgres.db.name 
+               key: postgres.db.name
          ports:
          - containerPort: ------
            name: postgresdb
