@@ -1,8 +1,8 @@
 apiVersion: apps/v1
-kind: ------
+kind: Deployment
 metadata:
   name: postgresdb
-  namespace: ------
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -16,7 +16,7 @@ spec:
         - name: data
           emptyDir: {}
       containers:
-       - image: ------
+       - image: postgres
          name: postgresdb
          env:
          - name: POSTGRES_USER
@@ -35,7 +35,7 @@ spec:
                name: postgres-config
                key: postgres.db.name
          ports:
-         - containerPort: ------
+         - containerPort: 5432
            name: postgresdb
          volumeMounts:
            - name: data
