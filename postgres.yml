@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: ------
 metadata:
   name: postgresdb
   namespace: ------
 spec:
+  selector:
+    matchLabels:
+      app: postgresdb
   template:
     metadata:
       labels:
