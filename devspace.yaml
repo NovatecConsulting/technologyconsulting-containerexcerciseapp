@@ -1,0 +1,12 @@
+version: v1beta5
+deployments:
+- name: exercise
+  kubectl:
+    manifests:
+    - postgres.yml
+    - todobackend.yml
+    - todoui.yml
+    - postgres-service.yml
+    - todobackend-service.yml
+    - todoui-service.yml
+dev: {}
