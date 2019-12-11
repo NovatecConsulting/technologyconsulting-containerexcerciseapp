@@ -59,3 +59,7 @@ minikube dashboard
 devspace init
 devspace use namespace default
 devspace deploy
+
+= Use local docker images
+eval $(minikube docker-env)
+and run the docker build commands once more
