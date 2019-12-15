@@ -1,12 +1,36 @@
 version: v1beta5
+images:
+  todobackend:
+    image: todobackend
+    dockerfile: Dockerfile-todobackend.dockerfile
+  todoui:
+    image: todoui
+    dockerfile: Dockerfile-todoui.dockerfile
 deployments:
-- name: exercise
+- name: postgres
   kubectl:
     manifests:
     - postgres.yml
-    - todobackend.yml
-    - todoui.yml
     - postgres-service.yml
+- name: todobackend
+  kubectl:
+    manifests:
+    - todobackend.yml
     - todobackend-service.yml
+- name: todoui
+  kubectl:
+    manifests:
+    - todoui.yml
     - todoui-service.yml
-dev: {}
+dev:
+  autoReload:
+    paths:
+    - ./todoui/target/todoui-0.0.1-SNAPSHOT.jar
+    - ./todobackend/target/todobackend-0.0.1-SNAPSHOT.jar
+    images:
+    - todobackend
+    - todoui
+    deployments:
+    - kubectl
+    - todobackend
+    - todoui

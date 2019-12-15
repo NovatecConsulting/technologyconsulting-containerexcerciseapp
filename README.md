@@ -39,11 +39,23 @@ Virtualbox --> RAM = 4GB,CPU = 4 Cores
 
 = Execute
 
+== Launch minikube
+
 minikube start
 kubectl get nodes -o wide
 >> NAME       STATUS   ROLES    AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE              KERNEL-VERSION   CONTAINER-RUNTIME
 >> minikube   Ready    master   39h   v1.17.0   192.168.99.101   <none>        Buildroot 2019.02.6   4.19.76          docker://18.9.9
+minikube dashboard
 
+== Use local docker images
+eval $(minikube docker-env)
+and run the docker build commands once more
+
+devspace init
+devspace use namespace default
+devspace dev
+
+== Check for running services
 kubectl get service
 >> NAME                  TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)          AGE
 >> service/kubernetes    ClusterIP      10.96.0.1        <none>           443/TCP          39h
@@ -51,15 +63,11 @@ kubectl get service
 >> service/todobackend   LoadBalancer   10.98.156.161    10.98.156.161    8080:30384/TCP   38h
 >> service/todoui        LoadBalancer   10.106.236.156   10.106.236.156   8090:30273/TCP   38h
 
+== Test the backend application
 curl 192.168.99.101:30384/fail
 curl 192.168.99.101:30384/hello
 Browser: http://192.168.99.101:30273/
-minikube dashboard
 
-devspace init
-devspace use namespace default
-devspace deploy
-
-= Use local docker images
-eval $(minikube docker-env)
-and run the docker build commands once more
+== Reload images with adapted source code
+mvn -f todobackend install
+mvn -f todoui install
