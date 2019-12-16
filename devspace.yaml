@@ -3,9 +3,11 @@ images:
   todobackend:
     image: todobackend
     dockerfile: Dockerfile-todobackend.dockerfile
+    context: todobackend/target/
   todoui:
     image: todoui
     dockerfile: Dockerfile-todoui.dockerfile
+    context: todoui/target/
 deployments:
 - name: postgres
   kubectl:
