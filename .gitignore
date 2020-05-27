@@ -2,3 +2,7 @@ target
 .settings
 .classpath
 .project
+
+
+# Ignore DevSpace cache and log folder
+.devspace/

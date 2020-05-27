@@ -1,10 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: todoui
   namespace: default
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: todoui
   template:
     metadata:
       name: todoui
@@ -13,6 +16,6 @@ spec:
     spec:
       containers:
       - name: todoui
-        image: novatec/technologyconsulting-containerexcerciseapp-todoui:v0.1
-        imagePullPolicy: Always
+        image: todoui:v0.2
+        imagePullPolicy: IfNotPresent
       restartPolicy: Always

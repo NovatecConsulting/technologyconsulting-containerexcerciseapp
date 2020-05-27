@@ -33,6 +33,8 @@ public class TodouiApplication {
 		System.out.println(" Invoking: "+ endpoint + "/todos/");
 		ResponseEntity<String[]> response = template.getForEntity(endpoint+"/todos/", String[].class);
 		if(response != null) model.addAttribute("items", response.getBody());
+		String helloWorld = template.getForObject(endpoint+"/hello", String.class);
+		if(helloWorld != null) model.addAttribute("helloWorld", helloWorld);
 		return "items";
 
 	}
