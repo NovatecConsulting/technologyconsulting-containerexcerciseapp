@@ -1,10 +1,12 @@
-version: v1beta5
+version: v1beta9
 images:
   todobackend:
+    preferSyncOverRebuild: true
     image: todobackend
     dockerfile: Dockerfile-todobackend.dockerfile
     context: todobackend/target/
   todoui:
+    preferSyncOverRebuild: true
     image: todoui
     dockerfile: Dockerfile-todoui.dockerfile
     context: todoui/target/

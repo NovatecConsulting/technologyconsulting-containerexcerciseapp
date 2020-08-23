@@ -22,8 +22,8 @@ sudo apt install virtualbox-6.0
 == minikube
 
 https://kubernetes.io/docs/setup/learning-environment/minikube/
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64   && chmod +x minikube
-sudo install minikube /usr/local/bin/
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+sudo dpkg -i minikube_latest_amd64.deb
 
 == devspace
 
@@ -42,6 +42,9 @@ Virtualbox --> RAM = 4GB,CPU = 4 Cores
 == Launch minikube
 
 minikube start
+minikube dashboard
+minikube tunnel > /dev/null
+
 kubectl get nodes -o wide
 >> NAME       STATUS   ROLES    AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE              KERNEL-VERSION   CONTAINER-RUNTIME
 >> minikube   Ready    master   39h   v1.17.0   192.168.99.101   <none>        Buildroot 2019.02.6   4.19.76          docker://18.9.9
