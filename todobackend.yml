@@ -4,7 +4,7 @@ metadata:
   name: todobackend
   namespace: default
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: todobackend
@@ -29,6 +29,6 @@ spec:
           value: prod
         - name: POSTGRES_HOST
           value: postgresdb
-        image: todobackend:v0.2
+        image: 192.168.50.10:5000/todobackend:v0.2
         imagePullPolicy: IfNotPresent
       restartPolicy: Always

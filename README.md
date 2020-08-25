@@ -2,7 +2,7 @@
 
 Following a short summary of the most important commands
 to get these example files running in a local machine
-setup running, tested on Ubuntu 18.04.
+setup running, tested on Ubuntu 18.04 with minikube.
 
 = Install
 
@@ -67,8 +67,8 @@ kubectl get service
 >> service/todoui        LoadBalancer   10.106.236.156   10.106.236.156   8090:30273/TCP   38h
 
 == Test the backend application
-curl 192.168.99.101:30384/fail
-curl 192.168.99.101:30384/hello
+curl 192.168.99.101:30273/fail
+curl 192.168.99.101:30273/hello
 Browser: http://192.168.99.101:30273/
 
 == Reload images with adapted source code

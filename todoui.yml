@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: todoui
-        image: todoui:v0.2
+        image: 192.168.50.10:5000/todoui:v0.2
         imagePullPolicy: IfNotPresent
       restartPolicy: Always
