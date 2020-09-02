@@ -4,16 +4,15 @@ N = 2
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
 
-    config.vm.provider "virtualbox" do |v|
-        v.memory = 2048
-        v.cpus = 2
-    end
-
     config.vm.synced_folder ".", "/vagrant", disabled: true
     config.vm.synced_folder "../", "/deploy/"
 
     config.vm.define "k8s-master" do |master|
         master.vm.box = IMAGE_NAME
+        master.vm.provider "virtualbox" do |v|
+            v.memory = 4096
+            v.cpus = 2
+        end
         master.vm.network "private_network", ip: "192.168.50.10"
         master.vm.network "forwarded_port", guest: 8090, guest_ip: "192.168.50.10", host: 8090, id: "todoui"
         master.vm.hostname = "k8s-master"
@@ -28,6 +27,10 @@ Vagrant.configure("2") do |config|
     (1..N).each do |i|
         config.vm.define "node-#{i}" do |node|
             node.vm.box = IMAGE_NAME
+            node.vm.provider "virtualbox" do |v|
+                v.memory = 2048
+                v.cpus = 2
+            end
             node.vm.network "private_network", ip: "192.168.50.#{i + 10}"
             node.vm.hostname = "node-#{i}"
             node.vm.provision "ansible" do |ansible|
