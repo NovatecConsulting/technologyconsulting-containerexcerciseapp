@@ -107,6 +107,8 @@
         file:
           path: /home/vagrant/.kube
           state: directory
+          owner: vagrant
+          group: vagrant
 
       - name: Setup kubeconfig for vagrant user 2) copy file - Get ckecksum of existing file
         stat:
